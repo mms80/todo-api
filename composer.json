@@ -16,7 +16,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "mms80\\TodoApi\\Tests": "tests/"
+            "mms80\\TodoApi\\Tests": "tests/",
+            "mms80\\TodoApi\\Database\\Factories\\": "database/factories/"
         }
     },
     "extra": {
