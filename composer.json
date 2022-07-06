@@ -2,13 +2,28 @@
     "name": "mms80/todo-api",
     "description": "todo api",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Mahdi Sedighian",
-            "email": "m.mahdi.sedighian@gmail.com"
-        }
-    ],
+    "authors": [{
+        "name": "Mahdi Sedighian",
+        "email": "m.mahdi.sedighian@gmail.com"
+    }],
     "require-dev": {
         "orchestra/testbench": "^6.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "mms80\\TodoApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "mms80\\TodoApi\\Tests": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "mms80\\TodoApi\\TodoApiServiceProvider"
+            ]
+        }
     }
 }
