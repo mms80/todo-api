@@ -2,6 +2,7 @@
 
 namespace mms80\TodoApi\Http\Controllers;
 
+use Exception;
 use mms80\TodoApi\Http\Requests\Task\ShowRequest;
 use mms80\TodoApi\Http\Requests\Task\StoreRequest;
 use mms80\TodoApi\Http\Requests\Task\UpdateRequest;
@@ -51,7 +52,9 @@ class TaskController extends Controller
             'status' => $request['status'] ? $request['status'] : $task->status,
         ]);
         if($request['status'] == Task::CLOSE){
-            Notification::send(Auth::user(),new Mail($task));
+            try{
+                Notification::send(Auth::user(),new Mail($task));
+            }catch(Exception $e){}
         }
         if($request['labels']){
             $this->syncLabels($request,$task);

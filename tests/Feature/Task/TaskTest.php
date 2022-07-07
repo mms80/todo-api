@@ -22,7 +22,7 @@ class TaskTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('POST','/api/tasks',[
+        ->json('POST','/tasks',[
             'title' => 'task1',
             'description' => 'task1',
         ]);
@@ -39,7 +39,7 @@ class TaskTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('POST','/api/tasks',[
+        ->json('POST','/tasks',[
             'title' => 'task1',
             'description' => 'task1',
             'labels'=>['label1','label2','label2'],
@@ -59,7 +59,7 @@ class TaskTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('PUT','/api/tasks/'.$task->id,[
+        ->json('PUT','/tasks/'.$task->id,[
             'title' => 'task1',
             'description' => 'task1',
             'status' => 2
@@ -80,7 +80,7 @@ class TaskTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('PUT','/api/tasks/'.$task->id,[
+        ->json('PUT','/tasks/'.$task->id,[
             'title' => 'task1',
             'description' => 'task1',
             'status' => 2,
@@ -100,7 +100,7 @@ class TaskTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('PUT','/api/tasks/'.$task->id,[
+        ->json('PUT','/tasks/'.$task->id,[
             'title' => 'task1',
             'description' => 'task1',
             'status' => 2
@@ -118,7 +118,7 @@ class TaskTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('GET','/api/tasks/'.$task->id);
+        ->json('GET','/tasks/'.$task->id);
         $response->assertJsonStructure([
             'data' => ['id','title','description','status','labels'=>[]]
         ]);
@@ -133,7 +133,7 @@ class TaskTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('GET','/api/tasks/'.$task->id);
+        ->json('GET','/tasks/'.$task->id);
         
         $response->assertForbidden();
     }
@@ -147,7 +147,7 @@ class TaskTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('GET','/api/tasks/');
+        ->json('GET','/tasks/');
 
         $response->assertJsonStructure([
             'data' => [['id','title','description','status','labels'=>[]]]
@@ -161,7 +161,7 @@ class TaskTest extends TestCase
         $task = factory(Task::class)->make()->toArray();
         $task['user_id'] = $user->id;
         $task = Task::create($task);
-        $response = $this->json('GET','/api/tasks/');
+        $response = $this->json('GET','/tasks/');
 
         $response->assertUnauthorized();
     }

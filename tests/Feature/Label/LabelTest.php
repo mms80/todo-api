@@ -23,7 +23,7 @@ class LabelTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('GET','/api/labels/');
+        ->json('GET','/labels/');
         $response->assertJsonStructure([
             'data' => [['id','title','total']]
         ]);
@@ -33,7 +33,7 @@ class LabelTest extends TestCase
     public function testShowAllLabelsWithoutAuth()
     {
         $labels = factory(Label::class,10)->create();
-        $response = $this->json('GET','/api/labels/');
+        $response = $this->json('GET','/labels/');
         
         $response->assertUnauthorized();
     }
@@ -44,7 +44,7 @@ class LabelTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('POST','/api/labels/',[
+        ->json('POST','/labels/',[
             'title' => "label1"
         ]);
         $response->assertJsonStructure([
@@ -55,7 +55,7 @@ class LabelTest extends TestCase
 
     public function testCreatLabelWithoutAuth()
     {
-        $response = $this->json('POST','/api/labels/',[
+        $response = $this->json('POST','/labels/',[
             'title' => "label1"
         ]);
     
@@ -71,7 +71,7 @@ class LabelTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer '.$user->token
         ])
-        ->json('POST','/api/labels/',[
+        ->json('POST','/labels/',[
             'title' => "label1"
         ]);
         

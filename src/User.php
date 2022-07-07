@@ -1,9 +1,9 @@
 <?php
 
 namespace mms80\TodoApi;
-use \UserModel;
+use mms80\TodoApi\UserParent;
 
-class User extends UserModel
+class User extends UserParent
 {
     protected $fillable = [
         'name', 'email', 'password','token'

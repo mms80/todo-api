@@ -14,7 +14,9 @@ class TodoApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        class_alias(config("auth.providers.users.model"), 'UserModel');
+        if(class_exists(config("auth.providers.users.model"))){
+            class_alias(config("auth.providers.users.model"), 'UserModel');
+        }
         Route::middlewareGroup("api-auth", config("config_todo_api.middleware", []));
         $this->loadRoutesFrom(__DIR__.'/../config/routes/api.php');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
