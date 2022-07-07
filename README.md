@@ -16,6 +16,7 @@ This project is defined for Laravel to design a project-independent package that
 
 - [mailtrap](https://mailtrap.io/)
 
+
 # Documentation
 
 - All requests must include the "Authorization" parameter in the header (Authorization value is an Bearer TOKEN) .
