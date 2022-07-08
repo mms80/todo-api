@@ -22,10 +22,10 @@ class TodoApiServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->publishes([
             __DIR__ . "/../database/migrations" => database_path("migrations"),
-        ]);
+        ],"todo_api_migrations");
         $this->publishes([
             __DIR__ . "/../config/config.php" => config_path("config_todo_api.php"),
-        ]);
+        ],"todo_api_config");
     }
 
     /**
