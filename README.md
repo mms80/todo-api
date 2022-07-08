@@ -5,7 +5,7 @@ This project is defined for Laravel to design a project-independent package that
 
 # Installation
 
-      compser require mms80/todo-api
+      composer require mms80/todo-api
 
 ## requires
 
@@ -16,10 +16,14 @@ This project is defined for Laravel to design a project-independent package that
 
 - [mailtrap](https://mailtrap.io/)
 
-
 # Documentation
+- To create tables in the database :
 
+		php artisan migrate
+					
+- Create a user in database.
 - All requests must include the "Authorization" parameter in the header (Authorization value is an Bearer TOKEN) .
+- Config "mailtrap" environments in ".env" file.
 ### task api :
 - To show all tasks of the logged in user :
 
@@ -35,7 +39,9 @@ This project is defined for Laravel to design a project-independent package that
 
 - To edit a task :
 
-		PUT "/tasks/{id}" -d {"title --optional":"foo","description --optional":"bar","labels --optional":["label1","label2"],"detaching --optional":"true"}
+		PUT "/tasks/{id}" -d {"title --optional":"foo" , "description --optional":"bar" , "status --optional":"1 || 2" , "labels --optional":["label1","label2"] , "detaching --optional":true}
+	
+	**When the "status" is "1" , the task is open and when the "status" is "2" , the task is closed.**
 	
 	**"detaching"  is an optional parameter . When it is true , new labels are added to the task and old labels are removed, and when it is false , new labels are added to old task labels (It is false by default).**
 
@@ -53,3 +59,4 @@ in the package folder path :
 
 	composer update
 	composer run test
+
